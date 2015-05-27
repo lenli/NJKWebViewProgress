@@ -51,9 +51,8 @@
 {
     BOOL isGrowing = progress > 0.0;
     [UIView animateWithDuration:(isGrowing && animated) ? _barAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect frame = _progressBarView.frame;
-        frame.size.width = progress * self.bounds.size.width;
-        _progressBarView.frame = frame;
+        CGRect frame = CGRectMake(0.0, 0.0, progress * self.bounds.size.width, self.bounds.size.height);
+        _progressBarView.frame = (progress > 0.0) ? frame : CGRectZero;
     } completion:nil];
 
     if (progress >= 1.0) {
